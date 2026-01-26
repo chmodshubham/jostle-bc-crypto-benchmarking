@@ -1,0 +1,32 @@
+# Gradle
+.gradle/
+build/
+bin/
+out/
+.settings/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+
+# JMH Generated
+jmh-result.json
+jmh-result.txt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Results (tracked for historical comparison)
+# results/ directory is tracked intentionally

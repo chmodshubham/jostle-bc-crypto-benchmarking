@@ -1,0 +1,87 @@
+plugins {
+    id 'java'
+    id 'me.champeau.jmh' version '0.7.3'
+}
+
+group = 'com.benchmark'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'org.openjdk.jmh:jmh-core:1.37'
+    annotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
+}
+
+jmh {
+    jmhVersion = '1.37'
+    duplicateClassesStrategy = DuplicatesStrategy.EXCLUDE
+
+    if (project.hasProperty('jmhForks')) {
+        fork = project.property('jmhForks').toInteger()
+    } else {
+        fork = 1
+    }
+    
+    if (project.hasProperty('jmhWarmup')) {
+        warmupIterations = project.property('jmhWarmup').toInteger()
+    }
+    
+    if (project.hasProperty('jmhIterations')) {
+        iterations = project.property('jmhIterations').toInteger()
+    }
+    
+    if (project.hasProperty('jmhTime')) {
+        timeOnIteration = project.property('jmhTime')
+    }
+    
+    // Benchmark modes
+    if (project.hasProperty('jmhMode')) {
+        benchmarkMode = project.property('jmhMode').split(',').toList()
+    }
+
+    // Result output
+    resultFormat = 'JSON'
+    resultsFile = project.file("${project.projectDir}/results/results.json")
+    
+    // Dynamic Native Library Configuration
+    String nativeLibPath = System.getenv('NATIVE_LIB_PATH')
+    String existingLdPath = System.getenv('LD_LIBRARY_PATH') ?: ""
+    String finalLdPath = existingLdPath
+    
+    if (nativeLibPath != null && !nativeLibPath.isEmpty()) {
+        finalLdPath = nativeLibPath + ":" + existingLdPath
+    }
+
+    jvmArgs = [
+        '--enable-native-access=ALL-UNNAMED',
+        '-Dorg.openssl.jostle.loader.load_name_0=interface_jni',
+        '-XX:+UseG1GC',
+        '-XX:MaxGCPauseMillis=200',
+        // Suppress JDK 25 warnings about deprecated Unsafe methods
+        '-XX:+IgnoreUnrecognizedVMOptions',
+        '--add-opens=java.base/java.lang=ALL-UNNAMED',
+        '--add-opens=java.base/sun.misc=ALL-UNNAMED',
+        '-Djava.util.logging.config.file=NONE',
+        '-Djmh.separateClasspathJAR=true',
+        // Use /tmp for JMH temp files to avoid permission issues
+        '-Djava.io.tmpdir=/tmp'
+    ]
+    
+    if (nativeLibPath != null) {
+         jvmArgs.add("-Djava.library.path=" + nativeLibPath)
+    }
+
+    environment = [
+        'LD_LIBRARY_PATH': finalLdPath
+    ]
+}
