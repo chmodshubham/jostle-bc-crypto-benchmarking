@@ -130,3 +130,32 @@ Open `scripts/run_benchmarks.sh` and modify the following variables at the top o
 | `TIME`       | Duration of each iteration                 | `"5s"`    |
 | `FORK`       | Number of fresh JVM forks                  | `1`       |
 | `MODE`       | JMH Mode (`thrpt`, `avgt`, `sample`, `ss`) | `"thrpt"` |
+
+## Visualizer
+
+A React-based web application for visualizing benchmark results with interactive charts and tables.
+
+### Setup
+
+```bash
+cd visualizer
+npm install
+```
+
+### Development
+
+```bash
+npm run dev
+```
+
+### Build
+
+```bash
+npm run build
+```
+
+The built files will be in `visualizer/dist/`.
+
+### Usage
+
+The visualizer automatically loads results from `results/results.json` via symlink. After running benchmarks, start the visualizer to see the comparison between BC and Jostle performance.

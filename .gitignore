@@ -30,3 +30,10 @@ Thumbs.db
 
 # Results (tracked for historical comparison)
 # results/ directory is tracked intentionally
+
+# Visualizer
+visualizer/node_modules/
+visualizer/dist/
+visualizer/*.local
+*.log
+npm-debug.log*

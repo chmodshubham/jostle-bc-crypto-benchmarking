@@ -1,0 +1,179 @@
+.container {
+  background: white;
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition-normal);
+}
+
+.container:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  margin: 6px 0 0 0;
+  font-size: 14px;
+  color: var(--color-gray-500);
+  font-weight: 500;
+}
+
+.exportButton {
+  padding: 10px 18px;
+  background: white;
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-gray-700);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.exportButton:hover {
+  background: var(--color-gray-50);
+  border-color: var(--color-gray-400);
+  color: var(--color-gray-900);
+}
+
+.exportButton:active {
+  background: var(--color-gray-100);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.table th {
+  text-align: center;
+  padding: 14px 18px;
+  background: linear-gradient(180deg, var(--color-gray-50) 0%, var(--color-gray-100) 100%);
+  border-bottom: 2px solid var(--color-gray-200);
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--color-gray-600);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.table th:first-child {
+  text-align: left;
+}
+
+.table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--color-gray-100);
+  color: var(--color-gray-700);
+}
+
+.table tbody tr {
+  transition: background-color var(--transition-fast);
+}
+
+.table tbody tr:hover {
+  background: var(--color-gray-50);
+}
+
+.table tbody tr:nth-child(even) {
+  background: var(--color-gray-50);
+}
+
+.table tbody tr:nth-child(even):hover {
+  background: var(--color-gray-100);
+}
+
+.nameCell {
+  font-weight: 500;
+  min-width: 280px;
+  color: var(--color-gray-800);
+  text-align: left;
+}
+
+.numCell {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-gray-700);
+}
+
+.winnerCell {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.faster {
+  color: var(--color-success);
+  background: var(--color-success-bg);
+  border-radius: var(--radius-sm);
+}
+
+.slower {
+  color: var(--color-accent-600);
+  background: var(--color-accent-50);
+  border-radius: var(--radius-sm);
+}
+
+.similar {
+  color: var(--color-gray-500);
+}
+
+.jostleWin {
+  color: #b45309;
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 11px;
+  min-width: 60px;
+}
+
+.bcWin {
+  color: #1d4ed8;
+  background: #dbeafe;
+  border: 1px solid #93c5fd;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 11px;
+  min-width: 60px;
+}
+
+.empty {
+  padding: 60px 40px;
+  text-align: center;
+  color: var(--color-gray-500);
+  font-size: 15px;
+  font-weight: 500;
+}
